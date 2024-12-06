@@ -22,7 +22,7 @@ namespace Exo_Monopoly.Models
         public Couleurs Couleur { get; }
         public int Prix { get; }
         public bool EstHypotequee { get; }
-        public Joueur Proprietaire { get; }
+        public Joueur Proprietaire { get; private set; }
 
         public CasePropriete(string nom, Couleurs couleur, int prix)
         {
@@ -34,6 +34,16 @@ namespace Exo_Monopoly.Models
             EstHypotequee = false;
             Proprietaire = null;
             */
+        }
+
+        public void Acheter(Joueur acheteur)
+        {
+            if (acheteur is null) return;           //Gérer avec une Exception
+            if (Proprietaire == acheteur) return;   //Gérer avec une Exception
+            if (acheteur.Solde < Prix) return;      //Gérer avec une Exception
+            acheteur.Payer(Prix);
+            Proprietaire = acheteur;
+            acheteur.AjouterPropriete(this);
         }
     }
 }

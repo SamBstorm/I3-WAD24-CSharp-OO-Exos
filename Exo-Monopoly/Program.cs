@@ -13,10 +13,7 @@ namespace Exo_Monopoly
             */
             
             /* Test class Joueur */
-            Joueur j1 = new Joueur() {
-                Nom = "Samuel",
-                Pion = Pions.Dino
-            };
+            Joueur j1 = new Joueur("Samuel",Pions.Dino);
 
             Console.WriteLine($"{j1.Nom} c'est votre tour! Bougez le pion {j1.Pion} de la case {j1.Position}!");
             if (j1.Avancer())
@@ -24,6 +21,13 @@ namespace Exo_Monopoly
                 Console.WriteLine($"Bravo {j1.Nom}! Vous avez fait un double!");
             }
             Console.WriteLine($"{j1.Nom} vous êtes à présent sur la case {j1.Position}!");
+
+            Console.WriteLine($"Votre solde est de {j1.Solde} $Monopoly.");
+            Console.WriteLine("Vos propriétés :");
+            foreach(CasePropriete prop in j1.Proprietes)
+            {
+                Console.WriteLine($"\t- {prop.Nom} ({prop.Couleur})");
+            }
 
             /* Test de la class CasePropriete */
 
@@ -37,6 +41,24 @@ namespace Exo_Monopoly
             else Console.WriteLine("Ce terrain n'est pas hypotèqué.");
             if (i3Patio.Proprietaire is null) Console.WriteLine("Ce terrain est en vente!");
             else Console.WriteLine($"Ce terrain appartient à {i3Patio.Proprietaire.Nom}");
+
+            i3Patio.Acheter(j1);
+
+            Console.WriteLine($"La première case du jeu Monopoly Version I3 est :");
+            Console.WriteLine(i3Patio.Nom);
+            Console.WriteLine($"De couleur {i3Patio.Couleur}");
+            Console.WriteLine($"Coutant {i3Patio.Prix} $Monopoly");
+            if (i3Patio.EstHypotequee) Console.WriteLine("Ce terrain est hypotèqué...");
+            else Console.WriteLine("Ce terrain n'est pas hypotèqué.");
+            if (i3Patio.Proprietaire is null) Console.WriteLine("Ce terrain est en vente!");
+            else Console.WriteLine($"Ce terrain appartient à {i3Patio.Proprietaire.Nom}");
+
+            Console.WriteLine($"Votre solde est de {j1.Solde} $Monopoly.");
+            Console.WriteLine("Vos propriétés :");
+            foreach (CasePropriete prop in j1.Proprietes)
+            {
+                Console.WriteLine($"\t- {prop.Nom} ({prop.Couleur})");
+            }
         }
     }
 }
