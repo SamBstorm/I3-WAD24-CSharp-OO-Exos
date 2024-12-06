@@ -14,17 +14,16 @@ namespace Exo_Monopoly
             
             /* Test class Joueur */
             Joueur j1 = new Joueur() {
-                nom = "Samuel",
-                pion = Pions.Dino
+                Nom = "Samuel",
+                Pion = Pions.Dino
             };
 
-            Console.WriteLine($"{j1.nom} c'est votre tour! Bougez le pion {j1.pion} de la case {j1.position}!");
+            Console.WriteLine($"{j1.Nom} c'est votre tour! Bougez le pion {j1.Pion} de la case {j1.Position}!");
             if (j1.Avancer())
             {
-                Console.WriteLine($"Bravo {j1.nom}! Vous avez fait un double!");
+                Console.WriteLine($"Bravo {j1.Nom}! Vous avez fait un double!");
             }
-            Console.WriteLine($"{j1.nom} vous êtes à présent sur la case {j1.position}!");
-
+            Console.WriteLine($"{j1.Nom} vous êtes à présent sur la case {j1.Position}!");
         }
     }
 }

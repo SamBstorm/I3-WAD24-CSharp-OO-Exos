@@ -8,17 +8,38 @@ namespace Exo_Monopoly.Models
 {
     public static class De
     {
-        public static int valeurMin = 1;
-        public static int valeurMax = 6;
-        public static Random rng;
+        private static int _valeurMin = 1;
+        private static int _valeurMax = 6;
+        private static Random _rng;
 
+        public static int ValeurMin
+        {
+            get { 
+                return _valeurMin;
+            }
+            set {
+                if (value <= 0) return; //Gérer à l'aide d'Exception
+                _valeurMin = value;
+                if(value >= _valeurMax) _valeurMax = value + 1;
+            }
+        }
+        public static int ValeurMax
+        {
+            get {  return _valeurMax; }
+            set
+            {
+                if (value <= 1) return; //Gérer à l'aide d'Exception
+                _valeurMax = value;
+                if (value <= _valeurMin) _valeurMin = value - 1;
+            }
+        }
         public static int[] Lancer(int nbDes)
         {
-            rng ??= new Random();
+            _rng ??= new Random();
             int[] result = new int[nbDes];
             for (int i = 0; i < nbDes; i++)
             {
-                result[i] = rng.Next(valeurMin, valeurMax + 1);
+                result[i] = _rng.Next(_valeurMin, _valeurMax + 1);
             }
             return result;
         }

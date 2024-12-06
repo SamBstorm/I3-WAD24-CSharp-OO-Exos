@@ -9,14 +9,25 @@ namespace Exo_Monopoly.Models
 {
     public class Joueur
     {
-        public string nom;
-        public Pions pion;
-        public int position;
+        private int _position;
+        public string Nom {  get; set; }
+        public Pions Pion { get; set; }
+        public int Position { 
+            get
+            {
+                return _position;
+            }
+            private set { 
+                _position = value;
+            }
+        }
+
+        public int Solde { get; private set; }
 
         public bool Avancer()
         {
             int[] result = De.Lancer(2);
-            position += result[0] + result[1];
+            Position += result[0] + result[1];
             return result[0] == result[1];
         }
     }
