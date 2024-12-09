@@ -11,8 +11,8 @@ namespace Exo_Monopoly
             int[] result = De.Lancer(2);
             Console.WriteLine( $"Premier dé : {result[0]}\nSecond dé : {result[1]}");
             */
-            
-            /* Test class Joueur */
+
+            /* Test class Joueur 
             Joueur j1 = new Joueur("Samuel",Pions.Dino);
 
             Console.WriteLine($"{j1.Nom} c'est votre tour! Bougez le pion {j1.Pion} de la case {j1.Position}!");
@@ -28,8 +28,9 @@ namespace Exo_Monopoly
             {
                 Console.WriteLine($"\t- {prop.Nom} ({prop.Couleur})");
             }
+            */
 
-            /* Test de la class CasePropriete */
+            /* Test de la class CasePropriete 
 
             CasePropriete i3Patio = new CasePropriete("Patio Interface 3", Couleurs.Marron, 20);
 
@@ -59,6 +60,44 @@ namespace Exo_Monopoly
             {
                 Console.WriteLine($"\t- {prop.Nom} ({prop.Couleur})");
             }
+            */
+
+            /* Test de la class Jeu */
+
+            Jeu monopolyI3 = new Jeu(
+                [
+                    new CasePropriete("Patio", Couleurs.Marron, 20),
+                    new CasePropriete("Rez de chaussé Bât. G.", Couleurs.Marron, 20),
+                    new CasePropriete("Rez de chaussé Bât. D.", Couleurs.Marron, 22),
+                    new CasePropriete("Ascenceur Bât. D.", Couleurs.BleuCiel, 26),
+                    new CasePropriete("Ascenceur Bât. G.", Couleurs.BleuCiel, 26),
+                    new CasePropriete("Toilette du RdC", Couleurs.BleuCiel, 28),
+                    new CasePropriete("Classe Games", Couleurs.Violet, 32),
+                    new CasePropriete("Classe WEB", Couleurs.Violet, 32),
+                    new CasePropriete("Classe WAD", Couleurs.Violet, 36)
+                ]);
+
+            monopolyI3.AjouterJoueur("Marwa", Pions.Dino);
+            monopolyI3.AjouterJoueur("Dorothée", Pions.Voiture);
+            monopolyI3.AjouterJoueur("Leslie", Pions.Chien);
+            monopolyI3.AjouterJoueur("Mélusine", Pions.DeACoudre);
+            monopolyI3.AjouterJoueur("Emilie", Pions.Cuirasse);
+            monopolyI3.AjouterJoueur("Jessica", Pions.Fer);
+            monopolyI3.AjouterJoueur("Charifa", Pions.Chapeau);
+            monopolyI3.AjouterJoueur("Anaïs", Pions.Brouette);
+            monopolyI3.AjouterJoueur("Jenny", Pions.Chaussure);
+            monopolyI3.AjouterJoueur("Amalia", Pions.Chien);
+            monopolyI3.AjouterJoueur("Debby", Pions.Dino);
+
+            Joueur joueurCourant = monopolyI3[Pions.Chapeau];
+            Console.WriteLine($"C'est au tour du pion {joueurCourant.Pion} ({joueurCourant.Nom}) :");
+            joueurCourant.Avancer();
+            Console.WriteLine($"{joueurCourant.Nom}: avancez à la case {joueurCourant.Position}.");
+            CasePropriete caseJoueur = monopolyI3[joueurCourant.Position];
+            Console.WriteLine($"Bienvenue sur las case {caseJoueur.Nom}.");
+            caseJoueur.Acheter(joueurCourant);
+            Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
+
         }
     }
 }
