@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exo_Monopoly.Models
 {
-    public class CasePropriete
+    public class CasePropriete : Case
     {
         /* Version complète (seulement si vérification en entrée et sortie)
         private string _nom;
@@ -18,15 +18,13 @@ namespace Exo_Monopoly.Models
             private set { _nom = value; }
         }*/
         /*Auto-proprétée (Seulement si aucune vérification)*/
-        public string Nom { get; }
         public Couleurs Couleur { get; }
         public int Prix { get; }
         public bool EstHypotequee { get; }
         public Joueur Proprietaire { get; private set; }
 
-        public CasePropriete(string nom, Couleurs couleur, int prix)
+        public CasePropriete(string nom, Couleurs couleur, int prix) : base(nom)
         {
-            Nom = nom;
             Couleur = couleur;
             Prix = prix;
             /* Pas nécessaire de les affecter, les variables auront les bonnes valeurs car valeur par défaut de leur type

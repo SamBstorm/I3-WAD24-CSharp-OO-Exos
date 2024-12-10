@@ -100,6 +100,26 @@ namespace Exo_Monopoly
             CasePropriete[] proprietesJoueur = joueurCourant + caseJoueur;
             Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
 
+            /*Test Case et Case Propriété*/
+
+            Case caseDepart = new Case("Case départ");
+            CasePropriete propriete1 = new CasePropriete("Propriété 1", Couleurs.Marron, 20);
+
+            caseDepart.AjouterVisiteur(joueurCourant);
+            caseDepart.AjouterVisiteur(monopolyI3[Pions.Dino]);
+            Console.WriteLine($"Les joueurs présent sur la {caseDepart.Nom} sont :");
+            foreach (Joueur visiteur in caseDepart.Visiteurs)
+            {
+                Console.WriteLine($"\t- {visiteur.Pion} ({visiteur.Nom})");
+            }
+
+            caseDepart.RetirerVisiteur(joueurCourant);
+            propriete1.AjouterVisiteur(joueurCourant);
+            Console.WriteLine($"Les joueurs présent sur la {propriete1.Nom} sont :");
+            foreach (Joueur visiteur in propriete1.Visiteurs)
+            {
+                Console.WriteLine($"\t- {visiteur.Pion} ({visiteur.Nom})");
+            }
         }
     }
 }
