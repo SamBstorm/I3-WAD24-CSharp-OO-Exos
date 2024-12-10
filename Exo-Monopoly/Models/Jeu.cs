@@ -10,19 +10,19 @@ namespace Exo_Monopoly.Models
     public class Jeu
     {
         private List<Joueur> _joueurs;
-        private List<CasePropriete> _plateau;
+        private List<Case> _plateau;
 
         public Joueur[] Joueurs
         {
             get { return _joueurs.ToArray(); }
         }
 
-        public CasePropriete[] Plateau
+        public Case[] Plateau
         {
             get { return _plateau.ToArray(); }
         }
 
-        public CasePropriete this[int numero] {
+        public Case this[int numero] {
             get
             {
                 numero = numero % _plateau.Count;
@@ -42,12 +42,12 @@ namespace Exo_Monopoly.Models
             }
         }
 
-        public Jeu(CasePropriete[] cases)
+        public Jeu(Case[] cases)
         {
             if (cases is null) return;           //Gérer à l'aide d'Exception
             if (cases.Length <= 0) return;       //Gérer à l'aide d'Exception
             _joueurs = new List<Joueur>();
-            _plateau = new List<CasePropriete>(cases);
+            _plateau = new List<Case>(cases);
         }
 
         public void AjouterJoueur(string nom, Pions pion)

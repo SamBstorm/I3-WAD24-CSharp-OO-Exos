@@ -94,11 +94,21 @@ namespace Exo_Monopoly
             Console.WriteLine($"C'est au tour du pion {joueurCourant.Pion} ({joueurCourant.Nom}) :");
             joueurCourant.Avancer();
             Console.WriteLine($"{joueurCourant.Nom}: avancez à la case {joueurCourant.Position}.");
-            CasePropriete caseJoueur = monopolyI3[joueurCourant.Position];
-            Console.WriteLine($"Bienvenue sur las case {caseJoueur.Nom}.");
+            Case caseJoueur = monopolyI3[joueurCourant.Position];
+            Console.WriteLine($"Bienvenue sur la case {caseJoueur.Nom}.");
             //caseJoueur.Acheter(joueurCourant);
-            CasePropriete[] proprietesJoueur = joueurCourant + caseJoueur;
-            Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
+            /*if(caseJoueur is CasePropriete)
+            {
+                CasePropriete propriete = (CasePropriete)caseJoueur;
+                CasePropriete[] proprietesJoueur = joueurCourant + propriete;
+                Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
+            }*/
+
+            if (caseJoueur is CasePropriete propriete)
+            {
+                CasePropriete[] proprietesJoueur = joueurCourant + propriete;
+                Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
+            }
 
             /*Test Case et Case Propriété*/
 
