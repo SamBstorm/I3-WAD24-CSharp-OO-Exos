@@ -90,12 +90,14 @@ namespace Exo_Monopoly
             monopolyI3.AjouterJoueur("Debby", Pions.Dino);
 
             Joueur joueurCourant = monopolyI3[Pions.Chapeau];
+            joueurCourant = joueurCourant + 200;
             Console.WriteLine($"C'est au tour du pion {joueurCourant.Pion} ({joueurCourant.Nom}) :");
             joueurCourant.Avancer();
             Console.WriteLine($"{joueurCourant.Nom}: avancez à la case {joueurCourant.Position}.");
             CasePropriete caseJoueur = monopolyI3[joueurCourant.Position];
             Console.WriteLine($"Bienvenue sur las case {caseJoueur.Nom}.");
-            caseJoueur.Acheter(joueurCourant);
+            //caseJoueur.Acheter(joueurCourant);
+            CasePropriete[] proprietesJoueur = joueurCourant + caseJoueur;
             Console.WriteLine($"{joueurCourant.Nom} : votre solde est de {joueurCourant.Solde}!");
 
         }

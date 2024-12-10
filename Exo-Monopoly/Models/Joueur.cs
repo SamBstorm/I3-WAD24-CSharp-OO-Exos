@@ -63,5 +63,16 @@ namespace Exo_Monopoly.Models
             if (Proprietes.Contains(propriete)) return;     //Gérer avec une Exception
             if (propriete.Proprietaire == this) _proprietes.Add(propriete);
         }
+
+        public static Joueur operator +(Joueur left, int right)
+        {
+            left.EtrePaye(right);
+            return left;
+        }
+
+        public static CasePropriete[] operator +(Joueur left, CasePropriete right) {
+            right.Acheter(left);
+            return left.Proprietes;
+        }
     }
 }
