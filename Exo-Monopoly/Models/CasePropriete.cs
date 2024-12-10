@@ -34,7 +34,7 @@ namespace Exo_Monopoly.Models
             */
         }
 
-        public void Acheter(Joueur acheteur)
+        private void Acheter(Joueur acheteur)
         {
             if (acheteur is null) return;           //Gérer avec une Exception
             if (Proprietaire == acheteur) return;   //Gérer avec une Exception
@@ -42,6 +42,23 @@ namespace Exo_Monopoly.Models
             acheteur.Payer(Prix);
             Proprietaire = acheteur;
             acheteur.AjouterPropriete(this);
+        }
+
+        private void Sejourner(Joueur visiteur)
+        {
+            if (visiteur is null) return;          //Gérer avec une Exception
+            if (Proprietaire is null) return;      //Gérer avec une Exception
+            if (Proprietaire == visiteur) return;  //Gérer avec une Exception
+            int montant = Prix / 4;
+            visiteur.Payer(montant);
+            Proprietaire.EtrePaye(montant);
+        }
+
+        public override void Activer(Joueur visiteur)
+        {
+            if (visiteur is null) return;          //Gérer avec une Exception
+            if (Proprietaire is null) Acheter(visiteur);
+            else if (Proprietaire != visiteur) Sejourner(visiteur);
         }
     }
 }

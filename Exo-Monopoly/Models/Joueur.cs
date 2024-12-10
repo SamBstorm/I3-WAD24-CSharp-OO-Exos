@@ -69,10 +69,10 @@ namespace Exo_Monopoly.Models
             left.EtrePaye(right);
             return left;
         }
-
+                /* Surcharge opérateur devenu obsolète par le niveau de protection de la méthode CasePropriete.Acheter()
         public static CasePropriete[] operator +(Joueur left, CasePropriete right) {
             right.Acheter(left);
             return left.Proprietes;
-        }
+        }*/
     }
 }

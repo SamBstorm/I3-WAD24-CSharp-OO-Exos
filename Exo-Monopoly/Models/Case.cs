@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exo_Monopoly.Models
 {
-    public class Case
+    public abstract class Case
     {
         private List<Joueur> _visiteurs;
 
@@ -36,5 +36,7 @@ namespace Exo_Monopoly.Models
             if (!_visiteurs.Contains(visiteur)) return;
             _visiteurs.Remove(visiteur);
         }
+
+        public abstract void Activer(Joueur visiteur);
     }
 }
