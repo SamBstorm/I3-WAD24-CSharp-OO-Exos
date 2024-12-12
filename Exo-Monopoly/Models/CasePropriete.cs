@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exo_Monopoly.Models
 {
-    public class CasePropriete : Case
+    public class CasePropriete : Case, IProprietaire
     {
         /* Version complète (seulement si vérification en entrée et sortie)
         private string _nom;
@@ -20,7 +20,7 @@ namespace Exo_Monopoly.Models
         /*Auto-proprétée (Seulement si aucune vérification)*/
         public Couleurs Couleur { get; }
         public int Prix { get; }
-        public bool EstHypotequee { get; }
+        public bool EstHypotequee { get; private set; }
         public Joueur Proprietaire { get; private set; }
 
         public CasePropriete(string nom, Couleurs couleur, int prix) : base(nom)
@@ -59,6 +59,24 @@ namespace Exo_Monopoly.Models
             if (visiteur is null) return;          //Gérer avec une Exception
             if (Proprietaire is null) Acheter(visiteur);
             else if (Proprietaire != visiteur) Sejourner(visiteur);
+        }
+
+        public void Hypothequer()
+        {
+            if (EstHypotequee) return;             //Gérer avec une Exception      
+            EstHypotequee = true;
+            Proprietaire.EtrePaye(Prix / 2);
+        }
+
+        public void Deshypothequer()
+        {
+            if(!EstHypotequee) return;          //Gérer avec une Exception
+            int currentSolde = Proprietaire.Solde;
+            Proprietaire.Payer((int)(Prix*0.6));
+            if (currentSolde != Proprietaire.Solde)
+            {
+                EstHypotequee = false;
+            }
         }
     }
 }

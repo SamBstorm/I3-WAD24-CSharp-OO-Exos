@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exo_Monopoly.Models
 {
-    public abstract class Case
+    public abstract class Case : IVisiteur
     {
         private List<Joueur> _visiteurs;
 
