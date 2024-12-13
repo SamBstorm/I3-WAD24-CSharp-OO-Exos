@@ -66,15 +66,15 @@ namespace Exo_Monopoly
 
             Jeu monopolyI3 = new Jeu(
                 [
-                    new CasePropriete("Patio", Couleurs.Marron, 20),
-                    new CasePropriete("Rez de chaussé Bât. G.", Couleurs.Marron, 20),
-                    new CasePropriete("Rez de chaussé Bât. D.", Couleurs.Marron, 22),
-                    new CasePropriete("Ascenceur Bât. D.", Couleurs.BleuCiel, 26),
-                    new CasePropriete("Ascenceur Bât. G.", Couleurs.BleuCiel, 26),
-                    new CasePropriete("Toilette du RdC", Couleurs.BleuCiel, 28),
-                    new CasePropriete("Classe Games", Couleurs.Violet, 32),
-                    new CasePropriete("Classe WEB", Couleurs.Violet, 32),
-                    new CasePropriete("Classe WAD", Couleurs.Violet, 36)
+                    new CasePropriete("Patio", Couleurs.Marron, 200),
+                    new CasePropriete("Rez de chaussé Bât. G.", Couleurs.Marron, 200),
+                    new CasePropriete("Rez de chaussé Bât. D.", Couleurs.Marron, 220),
+                    new CasePropriete("Ascenceur Bât. D.", Couleurs.BleuCiel, 260),
+                    new CasePropriete("Ascenceur Bât. G.", Couleurs.BleuCiel, 260),
+                    new CasePropriete("Toilette du RdC", Couleurs.BleuCiel, 280),
+                    new CasePropriete("Classe Games", Couleurs.Violet, 320),
+                    new CasePropriete("Classe WEB", Couleurs.Violet, 320),
+                    new CasePropriete("Classe WAD", Couleurs.Violet, 360)
                 ]);
 
             monopolyI3.AjouterJoueur("Marwa", Pions.Dino);
@@ -141,7 +141,18 @@ namespace Exo_Monopoly
                     Console.WriteLine($"Il se déplace sur la case {caseCourante.Nom}.");
                     caseCourante.AjouterVisiteur(joueurCourant);
                     IVisiteur caseVisitee = caseCourante;
-                    caseVisitee.Activer(joueurCourant);
+                    try
+                    {
+                        caseVisitee.Activer(joueurCourant);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.Message);
+                        Console.ResetColor();
+                        Console.Beep(440,2000);
+                    }
                     Console.WriteLine($"Le nombre de propriété de {joueurCourant.Nom} est de {joueurCourant.Proprietes.Length}.");
                     Console.WriteLine($"Son solde actuel est de {joueurCourant.Solde} $Monopoly."); 
                 } while (rejoue);

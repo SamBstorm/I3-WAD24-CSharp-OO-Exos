@@ -1,4 +1,5 @@
 ﻿using Exo_Monopoly.Enums;
+using Exo_Monopoly.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace Exo_Monopoly.Models
         public void Payer(int montant)
         {
             if (montant <= 0) return;   //Gérer avec une Exception
-            if (Solde < montant) return;//Gérer avec une Exception
+            if (Solde < montant) throw new NotEnoughMoneyException(this, montant);
             Solde -= montant;
         }
 

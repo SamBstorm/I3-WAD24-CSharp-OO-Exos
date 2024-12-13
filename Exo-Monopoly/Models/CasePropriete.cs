@@ -1,4 +1,5 @@
 ﻿using Exo_Monopoly.Enums;
+using Exo_Monopoly.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,8 +39,17 @@ namespace Exo_Monopoly.Models
         {
             if (acheteur is null) return;           //Gérer avec une Exception
             if (Proprietaire == acheteur) return;   //Gérer avec une Exception
-            if (acheteur.Solde < Prix) return;      //Gérer avec une Exception
-            acheteur.Payer(Prix);
+            /*Puisque une exception peut-être relevée par la méthode Joueur.Payer(int montant), il n'est plus nécessaire de contrôller le Solde
+            if (acheteur.Solde < Prix) return;
+            */
+            try
+            {
+                acheteur.Payer(Prix);
+            }
+            catch (NotEnoughMoneyException ex)
+            {
+                throw new NotEnoughMoneyException(ex.Payeur,ex.Montant,this);
+            }
             Proprietaire = acheteur;
             acheteur.AjouterPropriete(this);
         }
@@ -57,7 +67,17 @@ namespace Exo_Monopoly.Models
         public override void Activer(Joueur visiteur)
         {
             if (visiteur is null) return;          //Gérer avec une Exception
-            if (Proprietaire is null) Acheter(visiteur);
+            if (Proprietaire is null)
+            {
+                try
+                {
+                    Acheter(visiteur);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             else if (Proprietaire != visiteur) Sejourner(visiteur);
         }
 
