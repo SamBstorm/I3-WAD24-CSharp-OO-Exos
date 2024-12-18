@@ -65,12 +65,28 @@ namespace Exo_Monopoly
             /* Test de la class Jeu */
 
             Jeu monopolyI3 = new Jeu(
-                [
+                [ 
+                    new CaseAction("Case départ", delegate (Joueur visiteur){
+                        visiteur.EtrePaye(200);
+                        return true;
+                    }),
                     new CasePropriete("Patio", Couleurs.Marron, 200),
                     new CasePropriete("Rez de chaussé Bât. G.", Couleurs.Marron, 200),
+                    new CaseAction("Duplicata carte magnétique", delegate (Joueur visiteur){
+                        try
+                            {
+                                visiteur.Payer(100);
+                                return true;
+                            }
+                            catch (Exception)
+                            {
+                                return false;
+                            }
+                    }),
                     new CasePropriete("Rez de chaussé Bât. D.", Couleurs.Marron, 220),
                     new CasePropriete("Ascenceur Bât. D.", Couleurs.BleuCiel, 260),
                     new CasePropriete("Ascenceur Bât. G.", Couleurs.BleuCiel, 260),
+                    new CaseAction("Femme de ménage bloque le passage", null),
                     new CasePropriete("Toilette du RdC", Couleurs.BleuCiel, 280),
                     new CasePropriete("Classe Games", Couleurs.Violet, 320),
                     new CasePropriete("Classe WEB", Couleurs.Violet, 320),
