@@ -74,14 +74,14 @@ namespace Exo_Monopoly
                     new CasePropriete("Rez de chaussé Bât. G.", Couleurs.Marron, 200),
                     new CaseAction("Duplicata carte magnétique", delegate (Joueur visiteur){
                         try
-                            {
-                                visiteur.Payer(100);
-                                return true;
-                            }
-                            catch (Exception)
-                            {
-                                return false;
-                            }
+                        {
+                            visiteur.Payer(100);
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            return false;
+                        }
                     }),
                     new CasePropriete("Rez de chaussé Bât. D.", Couleurs.Marron, 220),
                     new CasePropriete("Ascenceur Bât. D.", Couleurs.BleuCiel, 260),
@@ -152,14 +152,9 @@ namespace Exo_Monopoly
                     Case caseCourante = monopolyI3[joueurCourant.Position];
                     Console.WriteLine($"Il est actuellement sur la case {caseCourante.Nom}.");
                     caseCourante.RetirerVisiteur(joueurCourant);
-                    rejoue = joueurCourant.Avancer();
-                    caseCourante = monopolyI3[joueurCourant.Position];
-                    Console.WriteLine($"Il se déplace sur la case {caseCourante.Nom}.");
-                    caseCourante.AjouterVisiteur(joueurCourant);
-                    IVisiteur caseVisitee = caseCourante;
                     try
                     {
-                        caseVisitee.Activer(joueurCourant);
+                        rejoue = joueurCourant.Avancer();
                     }
                     catch (Exception ex)
                     {
@@ -168,7 +163,11 @@ namespace Exo_Monopoly
                         Console.WriteLine(ex.Message);
                         Console.ResetColor();
                         Console.Beep(440,2000);
+                        rejoue = false;
                     }
+                    caseCourante = monopolyI3[joueurCourant.Position];
+                    Console.WriteLine($"Il se déplace sur la case {caseCourante.Nom}.");
+                    caseCourante.AjouterVisiteur(joueurCourant);                 
                     Console.WriteLine($"Le nombre de propriété de {joueurCourant.Nom} est de {joueurCourant.Proprietes.Length}.");
                     Console.WriteLine($"Son solde actuel est de {joueurCourant.Solde} $Monopoly."); 
                 } while (rejoue);

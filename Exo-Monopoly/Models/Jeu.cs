@@ -54,7 +54,14 @@ namespace Exo_Monopoly.Models
         {
             if (nom is null) return;                    //Gérer à l'aide d'Exception
             if (this[pion] is not null) return;         //Gérer à l'aide d'Exception
-            _joueurs.Add(new Joueur(nom, pion));
+            Joueur nouveauJoueur = new Joueur(nom, pion);
+            _joueurs.Add(nouveauJoueur);
+            nouveauJoueur.JoueurAvanceEvent += JoueurAvanceAction;
+        }
+
+        public void JoueurAvanceAction(Joueur joueur)
+        {
+            this[joueur.Position].Activer(joueur);
         }
     }
 }
