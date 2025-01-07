@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Exo_Monopoly.Models
 {
-    public delegate void JoueurAvanceDelegate(Joueur joueur);
+    //public delegate void JoueurAvanceDelegate(Joueur joueur);
     public class Joueur
     {
-        public event JoueurAvanceDelegate JoueurAvanceEvent;
+        public event Action<Joueur> JoueurAvanceEvent;
         private int _position;
         private List<CasePropriete> _proprietes;
         public string Nom {  get; set; }

@@ -9,8 +9,8 @@ namespace Exo_Monopoly.Models
     public delegate bool CaseDelegate(Joueur visiteur);
     public class CaseAction : Case
     {
-        private CaseDelegate _action;
-        public CaseAction(string nom, CaseDelegate action) : base(nom)
+        private Func<Joueur, bool> _action;
+        public CaseAction(string nom, Func<Joueur, bool> action) : base(nom)
         {
             _action = action;
         }
